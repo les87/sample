@@ -20,6 +20,7 @@ class Call(models.Model):
 	description = models.TextField()
 	engineer_comment = models.TextField(blank=True)
 	logged_by = models.CharField(max_length=30, blank=True)
+	Resolved = models.BooleanField(default=False)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	

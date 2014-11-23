@@ -1,11 +1,11 @@
 from django.shortcuts import render_to_response
-from proto.models import Printer
+from proto.models import Call
 
-def printers(request):
-	return render_to_response('printers.html',
-							{'printers': Printer.objects.all()})
+def calls(request):
+	return render_to_response('calls.html',
+							{'calls': Call.objects.all()})
 							
-def printer(request, printer_id=1):
-	return render_to_response('printer.html',
-							{'printer' : Printer.objects.get(id=printer_id)})
+def call(request, call_id=1):
+	return render_to_response('call.html',
+							{'call' : Call.objects.get(id=call_id)})
 					
