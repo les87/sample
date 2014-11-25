@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator 
+from django.contrib.auth.models import User
+from registration.signals import user_registered
 
 class Printer(models.Model): 
 	serial_number = models.CharField(max_length=200, unique=True) 
@@ -38,3 +40,23 @@ class Feedback(models.Model):
 	
 	def __unicode__(self):
 		return "Feedback for - "'%s' % (self.call)
+		
+class ExUserProfile(models.Model):
+	user = models.ForeignKey(User, unique=True)
+	first_name = models.CharField(max_length=30)
+	last_name = models.CharField(max_length=30)
+ 
+	def __unicode__(self):
+		return self.user
+	
+	def user_registered_callback(sender, user, request, **kwargs):
+		profile = ExUserProfile(user = user)
+		user.first_name = request.POST['first_name']
+		user.last_name = request.POST['last_name']
+		user.save()
+		profile.save()
+	
+	def __unicode__(self):
+		return '%s' % (self.user)
+		
+	user_registered.connect(user_registered_callback)
