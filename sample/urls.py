@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 	
 	(r'^accounts/', include('registration.backends.default.urls')),
 	url(r'^accounts/loggedin/', 'sample.views.loggedin'),
+	url(r'^create_call/', 'proto.views.create_call'),
 	
 	url(r'^$', 'sample.views.index')
 	

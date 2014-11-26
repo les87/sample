@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator 
 from django.contrib.auth.models import User
 from registration.signals import user_registered
+from django.forms import ModelForm
 
 class Printer(models.Model): 
 	serial_number = models.CharField(max_length=200, unique=True) 
@@ -60,3 +61,4 @@ class ExUserProfile(models.Model):
 		return '%s' % (self.user)
 		
 	user_registered.connect(user_registered_callback)
+
