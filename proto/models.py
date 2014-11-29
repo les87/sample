@@ -21,9 +21,10 @@ class Printer(models.Model):
 class Call(models.Model): 
 	printer = models.ForeignKey(Printer) 
 	description = models.TextField()
+	engineer = models.CharField(max_length=30, default="No Engineer Assigned", blank=True)
 	engineer_comment = models.TextField(blank=True)
 	logged_by = models.CharField(max_length=30, blank=True)
-	Resolved = models.BooleanField(default=False)
+	resolved = models.BooleanField(default=False)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	
@@ -41,6 +42,7 @@ class Feedback(models.Model):
 	
 	def __unicode__(self):
 		return "Feedback for - "'%s' % (self.call)
+	
 		
 class ExUserProfile(models.Model):
 	user = models.ForeignKey(User, unique=True)
