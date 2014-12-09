@@ -25,8 +25,11 @@ def create_call(request):
 			
 			
 def monitor(request):
-	return render_to_response('monitor.html',
-	{'calls': Call.objects.all().filter(logged_by = request.user, resolved=False)})
+	if not request.user.is_authenticated():
+		return redirect('/accounts/loggedin')
+	else:
+		return render_to_response('monitor.html',
+		{'calls': Call.objects.all().filter(logged_by = request.user, resolved=False)})
 	
 	
 def feedback(request):
