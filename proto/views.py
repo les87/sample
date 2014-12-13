@@ -1,6 +1,6 @@
-from django.shortcuts import render_to_response, render, redirect
+from django.shortcuts import render_to_response, render, redirect, get_object_or_404
 from proto.models import Call, Feedback
-from proto.forms import CallForm, FeedbackForm
+from proto.forms import CallForm, FeedbackForm, UpdateCallForm
 from django.template import RequestContext
 
 def calls(request):
@@ -16,20 +16,19 @@ def call(request, call_id=1):
 	else:
 		return render_to_response('call.html',
 		{'call' : Call.objects.get(id=call_id)})
-		if request.method == 'POST':
-			form = EngineerCallForm(request.POST)
-		if form.is_valid():
-			call = form.save(commit=False)
-			call.engineer = request.user
-			call.save()
-			return render('calls.html',
-			{'calls': Call.objects.all().filter(resolved=False)})
-		else:			
-			form = EngineerCallForm()
 
-			return render_to_response('calls.html',
-			{'calls': Call.objects.all().filter(resolved=False)})
-
+def call_update(request, pk):
+    call = get_object_or_404(Call, pk=pk)
+    if request.method == "POST":
+        form = UpdateCallForm(request.POST, instance=call)
+        if form.is_valid():
+            call = form.save(commit=True)
+            call.engineer = request.user.first_name 
+            call.save()
+            return redirect('proto.views.calls')
+    else:
+        form = UpdateCallForm(instance=call)
+    return render(request, 'call_update.html', {'form': form})
 			
 def create_call(request):
 	if request.method == 'POST':
