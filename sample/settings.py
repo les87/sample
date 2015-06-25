@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'proto',
 	'registration',
-    'ckeditor'
+    'tinymce'
 )
 
 REGISTRATION_OPEN = True                # If True, users can register
@@ -107,9 +107,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'printex.test'
 EMAIL_HOST_PASSWORD = 'printex121'
 DEFAULT_FROM_EMAIL = 'printex.test@gmail.com'
-
-
-#CKEDITOR
-
-CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'

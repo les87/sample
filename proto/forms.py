@@ -1,8 +1,7 @@
 from registration.forms import RegistrationForm
 from django import forms
 from proto.models import Call, Printer, Feedback, Knowledge
-from django.contrib import admin
-from ckeditor.widgets import CKEditorWidget
+from tinymce.widgets import TinyMCE
 
  
 class ExRegistrationForm(RegistrationForm):
@@ -38,8 +37,12 @@ class FeedbackForm(forms.ModelForm):
 
 class KnowledgeForm(forms.ModelForm):
 	
-	problem = forms.CharField(widget=CKEditorWidget()),
-   
+	class Meta:
+		model = Knowledge
+		fields = ('title', 'problem')
+		widgets = {
+		  'problem': forms.Textarea(attrs={'rows':5, 'cols':40}),
+        }      
 
 
 class UpdateKnowledgeForm(forms.ModelForm):
