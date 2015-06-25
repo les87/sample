@@ -7,8 +7,7 @@ from proto import views
 urlpatterns = patterns('', 
 		(r'^calls/', include('proto.urls')),
 	url(r'^admin/', include(admin.site.urls)),
-	(r'^tinymce/', include('tinymce.urls')),
-	
+	(r'^ckeditor/', include('ckeditor.urls')),
 	    # ...
 
 	url(r'accounts/register/$', 
