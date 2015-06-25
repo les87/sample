@@ -42,8 +42,16 @@ class Feedback(models.Model):
 	
 	def __unicode__(self):
 		return "Feedback for - "'%s' % (self.call)
-	
-		
+
+class Knowledge(models.Model):
+	title = models.CharField(max_length=200, unique=True) 
+	problem = models.TextField()
+	created = models.DateTimeField(auto_now_add=True)
+	updated = models.DateTimeField(auto_now=True)
+
+	def __unicode__(self):
+		return "Knowledge Article - "'%s %s' % (self.id, self.title)
+
 class ExUserProfile(models.Model):
 	user = models.ForeignKey(User, unique=True)
 	first_name = models.CharField(max_length=30)
@@ -63,4 +71,7 @@ class ExUserProfile(models.Model):
 		return '%s' % (self.user)
 		
 	user_registered.connect(user_registered_callback)
+
+
+
 

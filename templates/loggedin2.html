@@ -1,0 +1,25 @@
+{% extends "index2.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+	<h2>Hi {{ user.first_name }} you are now logged in!</h2>
+	<p>Click <a href="/accounts/logout/">here</a> to logout.</p>
+	
+	<br>
+	<br>
+	
+<div class="list-group" align = center>
+  <a class="list-group-item" href="/calls/all"><i class="fa fa-book fa-fw"></i>&nbsp; Calls</a>
+</div>
+
+{% else %}
+
+<p>Please ensure that you are logged in</p>
+
+<p><a class="btn btn-primary btn-lg" href="/accounts/login" role="button">Login &raquo;</a></p>
+
+{% endif %}	
+
+{% endblock %}

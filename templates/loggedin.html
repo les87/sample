@@ -1,0 +1,28 @@
+{% extends "index2.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+	<h2>Hi {{ user.first_name }} you are now logged in!</h2>
+	<p>Click <a href="/accounts/logout/">here</a> to logout.</p>
+	
+	<br>
+	<br>
+<div align = center>
+	
+<a href="/create_call/" <i class="fa fa-print fa-5x" title ="Book a Call"></i></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/monitor/" <i class="fa fa-desktop fa-5x" title ="Monitor a Call"></i></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<a href="/feedback/" <i class="fa fa-star-half-o fa-5x" title ="Leave Feedback"></i></a>
+
+{% else %}
+
+<p>Please ensure that you are logged in</p>
+
+<p><a class="btn btn-primary btn-lg" href="/accounts/login" role="button">Login &raquo;</a></p>
+
+{% endif %}	
+
+{% endblock %}

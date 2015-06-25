@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'proto',
 	'registration',
+    'tinymce'
 )
 
 REGISTRATION_OPEN = True                # If True, users can register

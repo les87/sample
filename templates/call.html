@@ -1,0 +1,46 @@
+{% extends "index2.html" %}
+
+{% block content %}
+
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("div").scrollTop(100);
+  });
+});
+</script>
+
+</head>	
+<body>
+
+<div style="border:1px solid black;width:600px;height:200px;overflow:auto">
+
+<h1>Call # {{ call.id }}</h1>
+<p>
+<b>Description</b> {{ call.description }}<br><br>
+<b><u>Printer Details</b></u><br><br>
+
+<b>Serial Number</b> {{ call.printer.serial_number }}<br>
+<b>Asset Tag</b> {{ call.printer.asset_tag }}<br>
+<b>Model</b> {{ call.printer.model }}<br>
+<b>Name</b> {{ call.printer.name }}<br>
+<b>IP Address</b> {{ call.printer.ip_address }}<br>
+<b>Location</b> {{ call.printer.location }}<br><br>
+
+<b>Logged</b> {{ call.created }}<br><br>
+<b>Logged by</b> {{ call.logged_by }}<br><br>
+
+<a class="btn btn-default" href="{% url 'call_update' pk=call.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+
+</p>
+</div>
+</body>
+</html>
+
+
+{% endblock %}

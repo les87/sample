@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, render, redirect, get_object_or_404
-from proto.models import Call, Feedback
-from proto.forms import CallForm, FeedbackForm, UpdateCallForm
+from proto.models import Call, Feedback, Knowledge
+from proto.forms import CallForm, FeedbackForm, UpdateCallForm, KnowledgeForm
 from django.template import RequestContext
 
 def calls(request):
@@ -42,7 +42,29 @@ def create_call(request):
 			form = CallForm()
 
 			return render(request, 'create_call.html', {'form': form})
-			
+
+def create_knowledge(request):
+	if request.method == 'POST':
+		form = KnowledgeForm(request.POST)
+		if form.is_valid():
+			knowledge = form.save(commit=False)
+			knowledge.save()
+			return redirect('/accounts/loggedin', pk=call.pk)
+        else:
+			form = KnowledgeForm()
+
+			return render(request, 'create_knowledge.html', {'form': form})
+
+def knowledge_update(request, pk):
+    knowledge = get_object_or_404(Call, pk=pk)
+    if request.method == "POST":
+        form = UpdateKnowledgeForm(request.POST, instance=call)
+        if form.is_valid():
+            knowledge = form.save(commit=True)
+            return redirect('/accounts/loggedin')
+    else:
+        form = UpdateCallForm(instance=call)
+    return render(request, 'knowledge_update.html', {'form': form})			
 			
 def monitor(request):
 	if not request.user.is_authenticated():
