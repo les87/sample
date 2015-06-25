@@ -1,7 +1,6 @@
 from registration.forms import RegistrationForm
 from django import forms
 from proto.models import Call, Printer, Feedback, Knowledge
-from tinymce.widgets import TinyMCE
 
  
 class ExRegistrationForm(RegistrationForm):
