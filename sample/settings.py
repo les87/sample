@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'proto',
 	'registration',
-    'tinymce'
+    'ckeditor'
 )
 
 REGISTRATION_OPEN = True                # If True, users can register
@@ -107,3 +107,30 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'printex.test'
 EMAIL_HOST_PASSWORD = 'printex121'
 DEFAULT_FROM_EMAIL = 'printex.test@gmail.com'
+
+#CKEditor
+
+CKEDITOR_UPLOAD_PATH = ('assets/CKEditor/uploads')
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt']},
+            {'name': 'clipboard',  'items': ['PasteText', '-', 'Undo', 'Redo' ]},
+            {'name': 'links', 'items': ['Link', 'Unlink']},
+            {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak', 'Iframe']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            '/',
+            {'name': 'basicstyles', 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-',
+                                              'RemoveFormat']},
+            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote',
+                                            'CreateDiv',
+            '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+        ],
+        'height': 300,
+        'width': 710,
+    },
+}
