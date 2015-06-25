@@ -19,6 +19,10 @@ class CKAdmin(admin.ModelAdmin):
     formfield_overrides = { models.TextField: {'widget': forms.Textarea(attrs={'class':'ckeditor'})}, }
 
     class Media:
+
+    	css = {
+    		"all": ('css/formatfix.css',)
+    	}
         js = ('ckeditor/ckeditor/ckeditor.js',)
 
 admin.site.register(User, UserProfileAdmin)
