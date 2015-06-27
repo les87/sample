@@ -43,7 +43,6 @@ class KnowledgeForm(forms.ModelForm):
 		  'problem': forms.Textarea(attrs={'rows':5, 'cols':40}),
         }    
 
-
 class UpdateKnowledgeForm(forms.ModelForm):
 
 	class Meta:

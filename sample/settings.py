@@ -115,22 +115,15 @@ CKEDITOR_UPLOAD_PATH = ('assets/CKEditor/uploads')
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [
-            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt']},
-            {'name': 'clipboard',  'items': ['PasteText', '-', 'Undo', 'Redo' ]},
-            {'name': 'links', 'items': ['Link', 'Unlink']},
-            {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak', 'Iframe']},
-            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-            '/',
-            {'name': 'basicstyles', 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-',
-                                              'RemoveFormat']},
-            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote',
-                                            'CreateDiv',
-            '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']},
-            '/',
-            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            ['Undo', 'Redo'],
+            ['Bold', 'Italic', 'Underline'],
+            ['Format'],
+            ['Link'],
+            ['BulletedList', 'NumberedList', '-', 'Source'],
         ],
-        'height': 300,
-        'width': 710,
-    },
+        'toolbarCanCollapse': False,
+        'entities': False,
+        'width': 955,
+        'uiColor': '#9A38F3',
+    }
 }

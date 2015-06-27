@@ -25,6 +25,7 @@ class CKAdmin(admin.ModelAdmin):
     	}
         js = ('ckeditor/ckeditor/ckeditor.js',)
 
+
 admin.site.register(User, UserProfileAdmin)
 
 admin.site.register(Call)

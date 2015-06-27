@@ -89,4 +89,6 @@ def feedback(request):
 		description='')
 
 	return render(request, 'feedback.html', {'form': form})
+
+	
 	
