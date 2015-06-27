@@ -1,7 +1,7 @@
 from registration.forms import RegistrationForm
 from django import forms
 from proto.models import Call, Printer, Feedback, Knowledge
-from ckeditor.widgets import CKEditorWidget
+
  
 class ExRegistrationForm(RegistrationForm):
 	first_name = forms.CharField(max_length=30)
@@ -31,8 +31,11 @@ class FeedbackForm(forms.ModelForm):
 		model = Feedback
 		fields = ('call', 'rating', 'description')
 		widgets = {
-          'description': forms.Textarea(attrs={'rows':5, 'cols':40}),
+          'description': forms.Textarea(attrs={'rows':5, 'cols':40, 'style': 'height: 1em'}))
+          ,
         }
+    
+
 
 class KnowledgeForm(forms.ModelForm):
 	

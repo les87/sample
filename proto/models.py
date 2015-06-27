@@ -42,6 +42,7 @@ class Feedback(models.Model):
 	
 	def __unicode__(self):
 		return "Feedback for - "'%s' % (self.call)
+		
 
 class Knowledge(models.Model):
 	title = models.CharField(max_length=200, unique=True) 

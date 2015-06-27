@@ -15,20 +15,40 @@ class UserProfileInline(admin.StackedInline):
 class UserProfileAdmin(UserAdmin):
     inlines = [ UserProfileInline, ]
 
-class CKAdmin(admin.ModelAdmin):
-    formfield_overrides = { models.TextField: {'widget': forms.Textarea(attrs={'class':'ckeditor'})}, }
+class TinyAdmin(admin.ModelAdmin):
 
     class Media:
 
     	css = {
     		"all": ('css/formatfix.css',)
     	}
-        js = ('ckeditor/ckeditor/ckeditor.js',)
+        js = ('js/tinymce/tinymce.min.js','js/tinymce/tinyinit.js')
+
+
+class ReadOnlyAdmin(admin.ModelAdmin):
+    readonly_fields = []
+
+    def get_readonly_fields(self, request, obj=None):
+        return list(self.readonly_fields) + \
+               [field.name for field in obj._meta.fields]
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+        def has_delete_permission(self, request, obj=None):
+            return False
+
+            actions = None
+
+    class Media:
+        css = {'all':('/static/css/admin.css',)}
+
+
 
 
 admin.site.register(User, UserProfileAdmin)
 
-admin.site.register(Call)
+admin.site.register(Call, ReadOnlyAdmin)
 admin.site.register(Printer)
-admin.site.register(Feedback)
-admin.site.register(Knowledge, CKAdmin)
+admin.site.register(Feedback, ReadOnlyAdmin)
+admin.site.register(Knowledge, TinyAdmin)

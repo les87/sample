@@ -64,7 +64,8 @@ def knowledge_update(request, pk):
             return redirect('/accounts/loggedin')
     else:
         form = UpdateCallForm(instance=call)
-    return render(request, 'knowledge_update.html', {'form': form})			
+    return render(request, 'knowledge_update.html', {'form': form})	
+  		
 			
 def monitor(request):
 	if not request.user.is_authenticated():

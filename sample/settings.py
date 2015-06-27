@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'proto',
 	'registration',
-    'ckeditor'
 )
 
 REGISTRATION_OPEN = True                # If True, users can register
@@ -108,22 +108,4 @@ EMAIL_HOST_USER = 'printex.test'
 EMAIL_HOST_PASSWORD = 'printex121'
 DEFAULT_FROM_EMAIL = 'printex.test@gmail.com'
 
-#CKEditor
 
-CKEDITOR_UPLOAD_PATH = ('assets/CKEditor/uploads')
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': [
-            ['Undo', 'Redo'],
-            ['Bold', 'Italic', 'Underline'],
-            ['Format'],
-            ['Link'],
-            ['BulletedList', 'NumberedList', '-', 'Source'],
-        ],
-        'toolbarCanCollapse': False,
-        'entities': False,
-        'width': 955,
-        'uiColor': '#9A38F3',
-    }
-}
