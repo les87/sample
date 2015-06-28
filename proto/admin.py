@@ -46,7 +46,6 @@ class ReadOnlyAdmin(admin.ModelAdmin):
 
 
 
-
 admin.site.register(User, UserProfileAdmin)
 
 admin.site.register(Call, ReadOnlyAdmin)
