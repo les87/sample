@@ -1,7 +1,13 @@
 textarea {
     width: 100%;
     min-height: 50px;
+
+    white-space: normal;
+    text-align: center;
+    -moz-text-align-last: center; /* Firefox 12+ */
+    text-align-last: center;
 }
+
 
 .noscroll {
     overflow: hidden;

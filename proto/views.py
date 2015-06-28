@@ -29,9 +29,9 @@ def call_update(request, pk):
 
             subject = 'There has been an update on your Incident'
             body = call.engineer_comment
-
+            
             email = EmailMessage(subject, body,
-            to=['lesliekifuse@me.com'])
+            to=[call.logged_by])
             email.send()
 
             return redirect('proto.views.calls')
