@@ -1,4 +1,12 @@
+/* - Control main TinyMce frame
+.row {
 
+}
+*/
+
+.vTextField{
+width: 100%;
+}
 
 .alert-warning{
 display: none;
