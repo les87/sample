@@ -11,9 +11,15 @@ admin.site.unregister(User)
 
 class UserProfileInline(admin.StackedInline):
     model = ExUserProfile
+    exclude = ('first_name', 'last_name')
+
+    class Media:
+    
+        css = { "all" : ("css/useradmin.css",) }
 
 class UserProfileAdmin(UserAdmin):
     inlines = [ UserProfileInline, ]
+
 
 class TinyAdmin(admin.ModelAdmin):
 
