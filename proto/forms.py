@@ -31,7 +31,7 @@ class FeedbackForm(forms.ModelForm):
 		model = Feedback
 		fields = ('call', 'rating', 'description')
 		widgets = {
-          'description': forms.Textarea(attrs={'rows':5, 'cols':40, 'style': 'height: 1em'}))
+          'description': forms.Textarea(attrs={'rows':5, 'cols':40, 'style'}))
           ,
         }
     
