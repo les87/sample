@@ -2,7 +2,6 @@ from django.shortcuts import render_to_response, render, redirect, get_object_or
 from proto.models import Call, Feedback, Knowledge
 from proto.forms import CallForm, FeedbackForm, UpdateCallForm, KnowledgeForm
 from django.template import RequestContext
-from django.core.mail import EmailMessage
 
 def calls(request):
 	if not request.user.is_authenticated():
@@ -26,14 +25,6 @@ def call_update(request, pk):
             call = form.save(commit=True)
             call.engineer = request.user.first_name 
             call.save()
-
-            subject = 'There has been an update on your Incident'
-            body = call.engineer_comment
-
-            email = EmailMessage(subject, body,
-            to=['lesliekifuse@me.com'])
-            email.send()
-
             return redirect('proto.views.calls')
     else:
         form = UpdateCallForm(instance=call)
