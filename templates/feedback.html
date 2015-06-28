@@ -4,9 +4,6 @@
 
 {% if user.is_authenticated %}
 
-<link href="/static/css/formslayout.css" rel="stylesheet">
-
-
 <form method="POST" class="post-form">{% csrf_token %}
 
 <div align="center">
@@ -26,6 +23,7 @@
 <p><a class="btn btn-primary btn-lg" href="/accounts/login" role="button">Login &raquo;</a></p>
 
 {% endif %}	
-<a href="/accounts/loggedin" <i class="fa fa-home fa-2x" title ="Home"></i></a>
+
+<a href="/accounts/loggedin" <i class="fa fa-home fa-5x" title ="Home"></i></a>
 	
 {% endblock %}

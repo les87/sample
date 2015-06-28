@@ -2,14 +2,10 @@
 
 {% block content %}
 
-<link href="/static/css/formslayout.css" rel="stylesheet">
-
     <h1>Call</h1>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Update</button>
     </form>
-
-    <a href="/accounts/loggedin" <i class="fa fa-home fa-2x" title ="Home"></i></a>
 	
 {% endblock %}
