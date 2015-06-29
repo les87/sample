@@ -28,7 +28,8 @@ def call_update(request, pk):
             call.save()
 
             subject = 'There has been an update on your Incident'
-            body = call.engineer_comment
+            body = 'Hello!' + '\n' + '\n' + call.engineer_comment + '\n' + '\n' + 'Regards' + '\n' + '\n' + call.engineer
+
             
             email = EmailMessage(subject, body,
             to=[call.logged_by])
@@ -100,5 +101,5 @@ def feedback(request):
 
 	return render(request, 'feedback.html', {'form': form})
 
-	
+
 	
