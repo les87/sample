@@ -27,8 +27,9 @@ class Call(models.Model):
 		('NT', 'No Toner'),
 		('PP', 'Power Problem'),
 		('EC', 'Error Code'),
+		('OT', 'Other'),
 	)
-	category = models.CharField(max_length=2, choices=category_choices, default="<Please Select Category>") 
+	category = models.CharField(max_length=2, choices=category_choices, default="<Category Not Selected>") 
 	
 	description = models.TextField()
 	engineer = models.CharField(max_length=30, default="No Engineer Assigned", blank=True)
@@ -45,7 +46,20 @@ class Call(models.Model):
 
 class Feedback(models.Model):
 	call = models.ForeignKey(Call)
-	rating = models.IntegerField (validators=[MinValueValidator(0),MaxValueValidator(10)])
+	rating_choices = (
+		(1, '1 - Poor'),
+		(2, '2'),
+		(3, '3'),
+		(4, '4'),
+		(5, '5 - Average'),
+		(6, '6'),
+		(7, '7'),
+		(8, '8'),
+		(9, '9'),
+		(10, '10 - Excellent'),
+	)
+
+	rating = models.IntegerField (choices=rating_choices, default=10)
 	description = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
