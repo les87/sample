@@ -19,7 +19,17 @@ class Printer(models.Model):
 	
 
 class Call(models.Model): 
-	printer = models.ForeignKey(Printer) 
+	printer = models.ForeignKey(Printer)
+
+	category_choices = (
+		('PS', 'Printer Setup'),
+		('PJ', 'Printer Jam'),
+		('NT', 'No Toner'),
+		('PP', 'Power Problem'),
+		('EC', 'Error Code'),
+	)
+	category = models.CharField(max_length=2, choices=category_choices, default="<Please Select Category>") 
+	
 	description = models.TextField()
 	engineer = models.CharField(max_length=30, default="No Engineer Assigned", blank=True)
 	engineer_comment = models.TextField(blank=True)

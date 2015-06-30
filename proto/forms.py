@@ -11,7 +11,7 @@ class CallForm(forms.ModelForm):
 
 	class Meta:
 		model = Call
-		fields = ('printer', 'description')
+		fields = ('printer', 'category', 'description')
 		widgets = {
           'description': forms.Textarea(attrs={'rows':5, 'cols':40}),
         }	
