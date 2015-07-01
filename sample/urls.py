@@ -6,6 +6,8 @@ from proto import views
 
 urlpatterns = patterns('', 
 		(r'^calls/', include('proto.urls')),
+		(r'^calls2/', include('proto.urls')),
+		(r'^calls3/', include('proto.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 	(r'^tinymce/', include('tinymce.urls')),
 	

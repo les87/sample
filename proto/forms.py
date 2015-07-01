@@ -20,7 +20,7 @@ class UpdateCallForm(forms.ModelForm):
 
 	class Meta:
 		model = Call
-		fields = ('engineer_comment', 'resolved')
+		fields = ('engineer_comment', 'status')
 		widgets = {
 		  'engineer_comment': forms.Textarea(attrs={'rows':5, 'cols':40}),
         }	

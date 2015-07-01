@@ -9,7 +9,21 @@ def calls(request):
 		return redirect('/accounts/loggedin')
 	else:
 		return render_to_response('calls.html',
-		{'calls': Call.objects.all().filter(resolved=False)})
+		{'calls': Call.objects.all().filter(status='Unassigned')})
+
+def calls2(request):
+	if not request.user.is_authenticated():
+		return redirect('/accounts/loggedin')
+	else:
+		return render_to_response('calls2.html',
+		{'calls': Call.objects.all().filter(status='Assigned')})
+
+def calls3(request):
+	if not request.user.is_authenticated():
+		return redirect('/accounts/loggedin')
+	else:
+		return render_to_response('calls3.html',
+		{'calls': Call.objects.all().filter(status='Delayed')})
 							
 def call(request, call_id=1):
 	if not request.user.is_authenticated():
@@ -17,6 +31,20 @@ def call(request, call_id=1):
 	else:
 		return render_to_response('call.html',
 		{'call' : Call.objects.get(id=call_id)})
+
+def call2(request, call_id=1):
+	if not request.user.is_authenticated():
+		return redirect('/accounts/loggedin')
+	else:
+		return render_to_response('call2.html',
+		{'call' : Call.objects.get(id=call_id)})	
+
+def call3(request, call_id=1):
+	if not request.user.is_authenticated():
+		return redirect('/accounts/loggedin')
+	else:
+		return render_to_response('call3.html',
+		{'call' : Call.objects.get(id=call_id)})			
 
 def call_update(request, pk):
     call = get_object_or_404(Call, pk=pk)
@@ -26,6 +54,7 @@ def call_update(request, pk):
             call = form.save(commit=True)
             call.engineer = request.user.first_name 
             call.save()
+            
 
             subject = 'There has been an update on your Incident'
             body = 'Hello!' + '\n' + '\n' + call.engineer_comment + '\n' + '\n' + 'Regards' + '\n' + '\n' + call.engineer
@@ -82,7 +111,7 @@ def monitor(request):
 		return redirect('/accounts/loggedin')
 	else:
 		return render_to_response('monitor.html',
-		{'calls': Call.objects.all().filter(logged_by = request.user, resolved=False)})
+		{'calls': Call.objects.all().filter(logged_by = request.user)})
 	
 	
 def feedback(request):
@@ -95,7 +124,7 @@ def feedback(request):
 	else:
 		form = FeedbackForm()
 		form.fields['call'].queryset = Call.objects.filter(
-		logged_by = request.user, resolved=True, feedback__description__isnull=True 
+		logged_by = request.user, status='Resolved', feedback__description__isnull=True 
 		).exclude(
 		description='')
 

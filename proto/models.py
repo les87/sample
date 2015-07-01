@@ -35,7 +35,15 @@ class Call(models.Model):
 	engineer = models.CharField(max_length=30, default="No Engineer Assigned", blank=True)
 	engineer_comment = models.TextField(blank=True)
 	logged_by = models.CharField(max_length=30, blank=True)
-	resolved = models.BooleanField(default=False)
+
+	status_choices = (
+		('Unassigned', 'Unassigned'),
+		('Assigned', 'Assigned'),
+		('Resolved', 'Resolved'),
+		('Delayed', 'Delayed'),
+	)
+	
+	status = models.CharField(max_length=20, choices=status_choices, default="Unassigned")
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	
