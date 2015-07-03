@@ -32,6 +32,7 @@ class Call(models.Model):
 	category = models.CharField(max_length=2, choices=category_choices, default="<Category Not Selected>") 
 	
 	description = models.TextField()
+
 	engineer = models.CharField(max_length=30, default="No Engineer Assigned", blank=True)
 	engineer_comment = models.TextField(blank=True)
 	logged_by = models.CharField(max_length=30, blank=True)

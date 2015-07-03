@@ -52,19 +52,21 @@ def call_update(request, pk):
         form = UpdateCallForm(request.POST, instance=call)
         if form.is_valid():
             call = form.save(commit=True)
-            call.engineer = request.user.first_name 
+            call.engineer = request.user.first_name
+             
             call.save()
             
-
             subject = 'There has been an update on your Incident'
-            body = 'Hello!' + '\n' + '\n' + call.engineer_comment + '\n' + '\n' + 'Regards' + '\n' + '\n' + call.engineer
-
+            body = 'Hello!' + '\n' + '\n' + call.engineer_comment + '\n' + '\n'
+            body2 = 'STATUS:' + '  ' + call.status + '\n' + '\n'
+            body3 = 'Regards' + '\n' + '\n' + call.engineer
+            	
             
-            email = EmailMessage(subject, body,
+            email = EmailMessage(subject, body + body2 + body3,
             to=[call.logged_by])
             email.send()
 
-            return redirect('proto.views.calls')
+            return redirect('/accounts/loggedin')
     else:
         form = UpdateCallForm(instance=call)
     return render(request, 'call_update.html', {'form': form})
