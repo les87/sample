@@ -19,34 +19,24 @@ class CallForm(forms.ModelForm):
 
 
 class UpdateCallForm(forms.ModelForm):
+
+    class Meta:
+        model = Call
+        fields = ('engineer_comment', 'status')
+        widgets = {
+ 		  'engineer_comment': forms.Textarea(attrs={'rows':5, 'cols':40})}
+
+
+class UpdateCallForm2(forms.ModelForm):
     engineer = ModelChoiceField(queryset=User.objects.all().filter(is_staff=True),
                               widget=Select(attrs={'class': 'form-control'}))
+
 
     class Meta:
         model = Call
         fields = ('engineer', 'engineer_comment', 'status')
         widgets = {
- 		  'engineer_comment': forms.Textarea(attrs={'rows':5, 'cols':40})}
-
-# class UpdateCallForm(forms.ModelForm):
-
-#     engineer = forms.ModelChoiceField(
-#         queryset=Call.objects.all(),
-#         label='Engineer',
-#         required=False,
-#         widget=forms.Select(attrs={'class': 'form-control'})
-#     )
-
-# 	#engineer = Call.objects.all(),
-# 	class Meta:
-# 		model = Call
-# 		fields = ('engineer_comment', 'engineer', 'status')
-# 		#widgets = {
-# 		#  'engineer_comment': forms.Textarea(attrs={'rows':5, 'cols':40}),
-#   		#  'engineer': forms.Select(attrs={'class': 'select'}),
-
-#         #}	
-
+ 		  'engineer_comment': forms.Textarea(attrs={'rows':5, 'cols':40})} 		  
 
 		
 class FeedbackForm(forms.ModelForm):

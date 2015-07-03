@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, render, redirect, get_object_or_404
 from proto.models import Call, Feedback, Knowledge
-from proto.forms import CallForm, FeedbackForm, UpdateCallForm, KnowledgeForm
+from proto.forms import CallForm, FeedbackForm, UpdateCallForm, KnowledgeForm, UpdateCallForm2
 from django.template import RequestContext
 from django.core.mail import EmailMessage
 
@@ -24,6 +24,13 @@ def calls3(request):
 	else:
 		return render_to_response('calls3.html',
 		{'calls': Call.objects.all().filter(status='Delayed')})
+
+def calls4(request):
+	if not request.user.is_authenticated():
+		return redirect('/accounts/loggedin')
+	else:
+		return render_to_response('calls4.html',
+		{'calls': Call.objects.all().exclude(status='Resolved')})		
 							
 def call(request, call_id=1):
 	if not request.user.is_authenticated():
@@ -37,14 +44,8 @@ def call2(request, call_id=1):
 		return redirect('/accounts/loggedin')
 	else:
 		return render_to_response('call2.html',
-		{'call' : Call.objects.get(id=call_id)})	
-
-def call3(request, call_id=1):
-	if not request.user.is_authenticated():
-		return redirect('/accounts/loggedin')
-	else:
-		return render_to_response('call3.html',
-		{'call' : Call.objects.get(id=call_id)})			
+		{'call' : Call.objects.get(id=call_id)})		
+				
 
 def call_update(request, pk):
     call = get_object_or_404(Call, pk=pk)
@@ -62,7 +63,7 @@ def call_update(request, pk):
             body3 = 'Regards' + '\n' + '\n' + call.engineer
             	
             
-            email = EmailMessage(subject, body + body2 + body3,
+            email = EmailMessage(subject, body + body2 + body3, 'Print Support Updates',
             to=[call.logged_by])
             email.send()
 
@@ -70,6 +71,30 @@ def call_update(request, pk):
     else:
         form = UpdateCallForm(instance=call)
     return render(request, 'call_update.html', {'form': form})
+
+
+def call_update2(request, pk):
+    call = get_object_or_404(Call, pk=pk)
+    if request.method == "POST":
+        form = UpdateCallForm2(request.POST, instance=call)
+        if form.is_valid():
+            call = form.save(commit=True)
+                         
+            call.save()
+            
+            subject = 'This call has now been assigned to you'
+            body = 'Hello!' + '\n' + '\n' + call.description + '\n' + '\n'
+            body2 = 'Engineer Comments: ' + call.engineer_comment + '\n' + '\n'
+            body3 = 'STATUS:' + '  ' + call.status           	
+            
+            email = EmailMessage(subject, body + body2 + body3, 'Print Support Updates',
+            to=[call.engineer])
+            email.send()
+
+            return redirect('/accounts/loggedin')
+    else:
+        form = UpdateCallForm2(instance=call)
+    return render(request, 'call_update2.html', {'form': form})    
 			
 def create_call(request):
 	if request.method == 'POST':

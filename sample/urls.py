@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 		(r'^calls/', include('proto.urls')),
 		(r'^calls2/', include('proto.urls')),
 		(r'^calls3/', include('proto.urls')),
+		(r'^calls4/', include('proto.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 	(r'^tinymce/', include('tinymce.urls')),
 	
@@ -23,6 +24,7 @@ urlpatterns = patterns('',
 	url(r'^monitor/', 'proto.views.monitor'),
 	url(r'^feedback/', 'proto.views.feedback'),
 	url(r'^call/(?P<pk>[0-9]+)/update/$', views.call_update, name='call_update'),
+	url(r'^call2/(?P<pk>[0-9]+)/update2/$', views.call_update2, name='call_update2'),
 	
 	url(r'^$', 'sample.views.index')
 

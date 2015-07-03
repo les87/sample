@@ -6,6 +6,10 @@
     display: none;
 }
 
+.deletelink, input[name="_addanother"], input[name="_addanother"]{
+    display: none;
+}
+
 .alert-warning{
 display: none;
 }
