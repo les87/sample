@@ -14,10 +14,19 @@ $(document).ready(function(){
 });
 </script>
 
+<link href="../../static/css/badge.css" rel="stylesheet">
+
 </head>	
 <body>
 
 <h1>Reassign Calls</h1>
+
+<div class="icon-wrapper">
+<i class="fa fa-envelope fa-1x fa-border icon-grey"></i>
+<span class="badge">{{ calls|length }}</span>
+
+</div>
+
 <div style="border:1px solid black;width:600px;height:200px;overflow:auto">
 {% for call in calls %}
 <div>

@@ -16,7 +16,9 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
+   <!--  <link href="jumbotron.css" rel="stylesheet"> -->
+   <link href="../../static/css/mainindex.css" rel="stylesheet">
+
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -28,6 +30,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
  </head>
+
 
   <body>
  
@@ -43,8 +46,37 @@
       <div class="container">
         <h1>Hello, welcome to Proto!</h1>
         <p>This is a revolutionary platform designed to make your life easier in the office environment.</p>
+
+ <div class= "navi">
+
+        <button type="button" class="btn btn-default" aria-label="Left"onclick="goBack()">
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+        <button type="button" class="btn btn-default" aria-label="Home" onclick="window.location.href='/../../accounts/loggedin'">
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        <button type="button" class="btn btn-default" aria-label="Right" onclick="goForward()">
+        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+
+          </button>
+      </div>
+
       </div>
     </div>
+
+<!-- Navigation Scripts -->
+
+  <script>
+  function goBack() {
+  window.history.back();
+  }
+</script>
+
+  <script>
+  function goForward() {
+  window.history.forward();
+  }
+</script>
+
+    </button>
 
     <div class="container">
     <div align = center>
