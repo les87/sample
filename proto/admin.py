@@ -23,6 +23,9 @@ class UserProfileAdmin(UserAdmin):
 
 class TinyAdmin(admin.ModelAdmin):
 
+    search_fields = ('title', 'problem', )
+    actions = None
+
     class Media:
 
     	css = {
@@ -50,12 +53,8 @@ class ReadOnlyAdmin(admin.ModelAdmin):
 
 class ReadOnlyAdmin2(admin.ModelAdmin):
     actions = None
-    readonly_fields = ('printer', 'description', 'engineer_comment',
-        'logged_by'
-        )
 
-    class Media:
-        css = {'all':('/static/css/admin2.css',)}        
+
 
 
 
