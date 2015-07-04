@@ -50,13 +50,6 @@ class ReadOnlyAdmin(admin.ModelAdmin):
 
 class ReadOnlyAdmin2(admin.ModelAdmin):
     actions = None
-    readonly_fields = ('printer', 'description', 'engineer_comment',
-        'logged_by'
-        )
-
-    class Media:
-        css = {'all':('/static/css/admin2.css',)}        
-
 
 
 admin.site.register(User, UserProfileAdmin)
