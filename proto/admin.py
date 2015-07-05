@@ -37,6 +37,7 @@ class TinyAdmin(admin.ModelAdmin):
 class ReadOnlyAdmin(admin.ModelAdmin):
     actions = None
     readonly_fields = []
+    list_filter = ('created', 'call__engineer') 
 
     def get_readonly_fields(self, request, obj=None):
         return list(self.readonly_fields) + \
@@ -53,9 +54,7 @@ class ReadOnlyAdmin(admin.ModelAdmin):
 
 class ReadOnlyAdmin2(admin.ModelAdmin):
     actions = None
-
-
-
+    list_filter = ('created', 'engineer', 'status', ) 
 
 
 admin.site.register(User, UserProfileAdmin)
