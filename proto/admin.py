@@ -6,7 +6,6 @@ from proto.models import Call, Printer, Feedback, Knowledge
 from django import forms
 from django.db import models
 
-
 admin.site.unregister(User)
 
 class UserProfileInline(admin.StackedInline):
@@ -49,6 +48,7 @@ class ReadOnlyAdmin(admin.ModelAdmin):
         def has_delete_permission(self, request, obj=None):
             return False
 
+
     class Media:
         css = {'all':('/static/css/admin.css',)}
 
@@ -57,9 +57,14 @@ class ReadOnlyAdmin2(admin.ModelAdmin):
     list_filter = ('created', 'engineer', 'status', ) 
 
 
+class PrinterAdmin(admin.ModelAdmin):
+    list_display = ('name', 'model', 'serial_number', 'location',)  
+    list_filter = ('model', 'location',) 
+    search_fields = ('serial_number', 'asset_tag', )
+
 admin.site.register(User, UserProfileAdmin)
 
 admin.site.register(Call, ReadOnlyAdmin2)
-admin.site.register(Printer)
+admin.site.register(Printer, PrinterAdmin)
 admin.site.register(Feedback, ReadOnlyAdmin)
 admin.site.register(Knowledge, TinyAdmin)

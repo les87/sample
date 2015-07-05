@@ -15,8 +15,7 @@ class Printer(models.Model):
 	updated = models.DateTimeField(auto_now=True)
 	
 	def __unicode__(self):
-		return u'%s %s' % (self.name, self.serial_number)
-	
+		return "Printer - "'%s %s' % (self.name, self.model)
 
 class Call(models.Model): 
 	printer = models.ForeignKey(Printer)
@@ -43,15 +42,14 @@ class Call(models.Model):
 		('Resolved', 'Resolved'),
 		('Delayed', 'Delayed'),
 	)
-	
+
 	status = models.CharField(max_length=20, choices=status_choices, default="Unassigned")
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
+
 	
-		
 	def __unicode__(self):
-		return "Call # - "'%s %s' % (self.id, self.printer)
-	
+		return "Call # - "'%s' % (self.id)
 
 class Feedback(models.Model):
 	call = models.ForeignKey(Call)
@@ -74,8 +72,7 @@ class Feedback(models.Model):
 	updated = models.DateTimeField(auto_now=True)
 	
 	def __unicode__(self):
-		return "Feedback for - "'%s' % (self.call)
-		
+		return "Feedback for - "'%s' % (self.call)	
 
 class Knowledge(models.Model):
 	title = models.CharField(max_length=200, unique=True) 
@@ -85,6 +82,7 @@ class Knowledge(models.Model):
 
 	def __unicode__(self):
 		return "Knowledge Article - "'%s %s' % (self.id, self.title)
+
 
 class ExUserProfile(models.Model):
 	user = models.ForeignKey(User, unique=True)

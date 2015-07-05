@@ -158,4 +158,9 @@ def feedback(request):
 	return render(request, 'feedback.html', {'form': form})
 
 
+def rating(request):
+    f = Call.objects.filter(
+    engineer = request.user, status='Resolved')
+    rating_average = f.rating_set.aggregate(Avg('rating')).values()[0]
+
 	
