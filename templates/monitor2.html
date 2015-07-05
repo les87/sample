@@ -1,0 +1,44 @@
+{% extends "index2.html" %}
+
+{% block content %}
+
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("div").scrollTop(100);
+  });
+});
+</script>
+
+</head>	
+<body>
+
+<h1>Calls</h1>
+
+<div style="border:1px solid black;width:600px;height:200px;overflow:auto">
+{% for call in calls %}
+<div id="hacker-list">
+<h2>Call # {{ call.id }}<br></h2>
+<p><b>Description:</b> {{ call.description }}</p>
+<p><b>Engineer Comment:</b> {{ call.engineer_comment }}</p>
+<p><b>Time Logged:</b> {{ call.created }}</p>
+<p><b>Last Update:</b> {{ call.updated }}</p>
+</div><br>
+{% empty %}
+<p>There are currently no outstanding calls to monitor, we must be doing a good job!.</p><br>
+<a class="btn btn-primary -lg" href="/accounts/loggedin" role="button">Back to Main Menu </a></p>
+</div>
+
+</body>
+
+</html>
+
+{% endfor %}
+
+<a href="/accounts/loggedin" <i class="fa fa-home fa-2x" title ="Home"></i></a>
+
+{% endblock %}

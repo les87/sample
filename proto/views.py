@@ -4,6 +4,7 @@ from proto.forms import CallForm, FeedbackForm, UpdateCallForm, KnowledgeForm, U
 from django.template import RequestContext
 from django.core.mail import EmailMessage
 
+
 def calls(request):
 	if not request.user.is_authenticated():
 		return redirect('/accounts/loggedin')
@@ -139,6 +140,15 @@ def monitor(request):
 	else:
 		return render_to_response('monitor.html',
 		{'calls': Call.objects.all().filter(logged_by = request.user)})
+	
+
+def monitor2(request):
+	if not request.user.is_authenticated():
+		return redirect('/accounts/loggedin')
+	else:
+		return render_to_response('monitor2.html',
+    		
+		{'calls': Call.objects.all().order_by('-created').exclude(status = 'Resolved')})
 	
 	
 def feedback(request):
